@@ -71,4 +71,14 @@ app.put("/tasks/:id", (request, response) => {
 
 //DELETE
 
+app.delete("/tasks/:id", (request, response) => {
+
+	const deletedTaskId = request.params.id;
+
+	response.status(200).json({
+		message: "You issued a delete request for ID: " + deletedTaskId
+	})
+
+})
+
 module.exports.app = serverlessHttp(app);
