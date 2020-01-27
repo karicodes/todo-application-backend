@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 
 app.get("/tasks", function (request, response) {
 
-	console.log(request);
+  console.log(request);
 
-	response.status(200).json({
+  response.status(200).json({
 
     tasks: [
       {
@@ -41,18 +41,18 @@ app.get("/tasks", function (request, response) {
         dueDate: "2020-01-06",
       }
     ]
-	})
+  })
 })
 
 //POST
 
 app.post("/tasks", (request, response) => {
 
-	const addedTask = request.body;
+  const addedTask = request.body;
 
-	response.status(200).json({
-		message: `Successfully added the following task: ${JSON.stringify(addedTask)}`
-	})
+  response.status(200).json({
+    message: `Successfully added the following task: ${JSON.stringify(addedTask)}`
+  })
 
 })
 
@@ -60,12 +60,12 @@ app.post("/tasks", (request, response) => {
 
 app.put("/tasks/:id", (request, response) => {
 
-	const updatedTask = request.body;
-	const id = request.params.id;
+  const updatedTask = request.body;
+  const id = request.params.id;
 
-	response.status(200).json({
-		message: `Successfully updated task ID with taskName: ${updatedTask.taskName}, dueDate: ${updatedTask.dueDate}, complete: ${updatedTask.complete}`
-	})
+  response.status(200).json({
+    message: `Successfully updated task ID with taskName: ${updatedTask.taskName}, dueDate: ${updatedTask.dueDate}, complete: ${updatedTask.complete}`
+  })
 
 })
 
@@ -73,11 +73,11 @@ app.put("/tasks/:id", (request, response) => {
 
 app.delete("/tasks/:id", (request, response) => {
 
-	const deletedTaskId = request.params.id;
+  const deletedTaskId = request.params.id;
 
-	response.status(200).json({
-		message: "You issued a delete request for ID: " + deletedTaskId
-	})
+  response.status(200).json({
+    message: "You issued a delete request for ID: " + deletedTaskId
+  })
 
 })
 
