@@ -12,3 +12,7 @@ functions:
           method: get
           path: tasks
           cors: true
+      - http:
+          method: post
+          path: tasks
+          cors: true

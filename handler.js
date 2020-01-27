@@ -44,8 +44,17 @@ app.get("/tasks", function (request, response) {
 	})
 })
 
-
 //POST
+
+app.post("/tasks", (request, response) => {
+
+	const addedTask = request.body;
+
+	response.status(200).json({
+		message: `Successfully added the following task: ${JSON.stringify(addedTask)}`
+	})
+
+})
 
 //PUT
 
