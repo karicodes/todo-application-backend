@@ -16,3 +16,7 @@ functions:
           method: post
           path: tasks
           cors: true
+      - http:
+          method: put
+          path: tasks/{id}
+          cors: true

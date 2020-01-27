@@ -58,6 +58,17 @@ app.post("/tasks", (request, response) => {
 
 //PUT
 
+app.put("/tasks/:id", (request, response) => {
+
+	const updatedTask = request.body;
+	const id = request.params.id;
+
+	response.status(200).json({
+		message: `Successfully updated task ID with taskName: ${updatedTask.taskName}, dueDate: ${updatedTask.dueDate}, complete: ${updatedTask.complete}`
+	})
+
+})
+
 //DELETE
 
 module.exports.app = serverlessHttp(app);
