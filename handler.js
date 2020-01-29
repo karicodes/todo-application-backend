@@ -58,7 +58,7 @@ app.put("/tasks/:id", (request, response) => {
 	const updatedTask = request.body;
 	const id = request.params.id;
 
-	connection.query(`UPDATE Tasks SET task_name = ?, due_date = ?, complete = ? WHERE taskIgit add .gd = ?
+	connection.query(`UPDATE Tasks SET task_name = ?, due_date = ?, complete = ? WHERE taskId = ?
 	`, [updatedTask.task_name, updatedTask.due_date, updatedTask.complete, id],
 		function (err) {
 			if (err) {
