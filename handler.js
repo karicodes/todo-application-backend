@@ -34,17 +34,22 @@ app.get("/tasks", function (request, response) {
 	});
 });
 
-//POST
+//POST 
 
 app.post("/tasks", (request, response) => {
 
-  const addedTask = request.body;
+	const addedTask = request.body;
 
-  response.status(200).json({
-    message: `Successfully added the following task: ${JSON.stringify(addedTask)}`
-  })
-
-})
+	connection.query("INSERT INTO Tasks SET ?", [addedTask], function (err, data) {
+		if (err) {
+			response.status(500).json({ error: err });
+		} else {
+			response.status(201).json({
+				message: `Successfully added the following task: ${addedTask.task_name}`
+			})
+		}
+	})
+});
 
 //PUT
 
