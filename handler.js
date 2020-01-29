@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 	database: "tasks"
 })
 
-// GET
+// GET 
 
 app.get("/tasks", function (request, response) {
 
