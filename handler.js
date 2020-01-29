@@ -51,18 +51,25 @@ app.post("/tasks", (request, response) => {
 	})
 });
 
-//PUT
+// PUT /developers
 
 app.put("/tasks/:id", (request, response) => {
 
-  const updatedTask = request.body;
-  const id = request.params.id;
+	const updatedTask = request.body;
+	const id = request.params.id;
 
-  response.status(200).json({
-    message: `Successfully updated task ID with taskName: ${updatedTask.taskName}, dueDate: ${updatedTask.dueDate}, complete: ${updatedTask.complete}`
-  })
-
-})
+	connection.query(`UPDATE Tasks SET task_name = ?, due_date = ?, complete = ? WHERE taskId = ?
+	`, [updatedTask.task_name, updatedTask.due_date, updatedTask.complete, id],
+		function (err) {
+			if (err) {
+				response.status(500).json({ error: err });
+			} else {
+				response.status(200).json({
+					message: `Successfully updated task: ${updatedTask.task_name}`
+				});
+			}
+		})
+});
 
 //DELETE
 
