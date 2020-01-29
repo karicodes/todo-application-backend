@@ -34,7 +34,7 @@ app.get("/tasks", function (request, response) {
 	});
 });
 
-//POST 
+// POST 
 
 app.post("/tasks", (request, response) => {
 
@@ -51,14 +51,14 @@ app.post("/tasks", (request, response) => {
 	})
 });
 
-// PUT /developers
+// PUT 
 
 app.put("/tasks/:id", (request, response) => {
 
 	const updatedTask = request.body;
 	const id = request.params.id;
 
-	connection.query(`UPDATE Tasks SET task_name = ?, due_date = ?, complete = ? WHERE taskId = ?
+	connection.query(`UPDATE Tasks SET task_name = ?, due_date = ?, complete = ? WHERE taskIgit add .gd = ?
 	`, [updatedTask.task_name, updatedTask.due_date, updatedTask.complete, id],
 		function (err) {
 			if (err) {
@@ -71,16 +71,21 @@ app.put("/tasks/:id", (request, response) => {
 		})
 });
 
-//DELETE
+// DELETE 
 
 app.delete("/tasks/:id", (request, response) => {
 
-  const deletedTaskId = request.params.id;
+	const id = request.params.id;
 
-  response.status(200).json({
-    message: "You issued a delete request for ID: " + deletedTaskId
-  })
-
-})
+	connection.query("DELETE FROM Tasks WHERE taskId = ?", [id], function (err) {
+		if (err) {
+			response.status(500).json({ error: err });
+		} else {
+			response.status(200).json({
+				message: "You issued a delete request"
+			})
+		}
+	})
+});
 
 module.exports.app = serverlessHttp(app);
