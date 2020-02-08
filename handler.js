@@ -27,8 +27,12 @@ app.get("/tasks", function (request, response) {
 				error: err
 			})
 		} else {
+			const mapped = data.map(todo => {
+				todo.complete = todo.complete === 0 ? false : true;
+				return todo;
+			});
 			response.status(200).json({
-				tasks: data
+				tasks: mapped
 			});
 		}
 	});
@@ -44,9 +48,9 @@ app.post("/tasks", (request, response) => {
 		if (err) {
 			response.status(500).json({ error: err });
 		} else {
-			response.status(201).json({
-				message: `Successfully added the following task: ${addedTask.task_name}`
-			})
+			addedTask.taskId = data.insertId;
+			addedTask.due_date = new Date(addedTask.due_date).toISOString();
+			response.status(201).json(addedTask)
 		}
 	})
 });
